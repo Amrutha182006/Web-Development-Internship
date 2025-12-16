@@ -1,0 +1,7 @@
+- Web browser: any modern browser (Chrome, Edge, Firefox)
+- Code editor: Visual Studio Code
+- VS Code extensions:
+  - Live Server (for local preview)
+- Online services:
+  - W3C HTML Validator (for validation)
+  - httpbin.org (for testing form submissions)
