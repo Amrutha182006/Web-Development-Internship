@@ -38,14 +38,12 @@ footer {
 hr {
   border: none;
   height: 3px;
-  background-image: linear-gradient(
-    to right,
-    var(--secondary-color),
-    var(--primary-color),
-    var(--bg-color),
-    var(--primary-color),
-    var(--secondary-color)
-  );
+  background-image: linear-gradient(to right,
+      var(--secondary-color),
+      var(--primary-color),
+      var(--bg-color),
+      var(--primary-color),
+      var(--secondary-color));
   border-radius: 999px;
   margin: 1.5rem 0;
 }
@@ -128,6 +126,15 @@ h2 {
 
 .about-layout p {
   max-width: 50rem;
+}
+
+#about img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#about img:hover {
+  transform: scale(1.05);
 }
 
 /* Skills section */
@@ -220,7 +227,7 @@ button {
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
   border: none;
-  background-color: #10b981;
+  background-color: #1081b9;
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
@@ -228,9 +235,23 @@ button {
 }
 
 button:hover {
-  background-color: #059669;
+  background-color: #2d2c3b;
   transform: translateY(-1px);
 }
+
+#form-feedback {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.feedback-error {
+  color: #b91c1c;
+}
+
+.feedback-success {
+  color: #15803d;
+}
+
 
 /* Footer */
 footer {
@@ -276,4 +297,60 @@ footer a:hover {
   .about-layout p {
     text-align: left;
   }
+}
+
+/* Dark mode - lighter versions of your colors */
+body.dark-mode {
+  --primary-color: #021225;
+  --secondary-color: #7794c2;
+  --accent-color: #34d399;
+  --bg-color: #222d3d;
+
+  background-color: var(--bg-color);
+}
+
+body.dark-mode h2 {
+  color: #dbdde7;
+}
+
+body.dark-mode nav a {
+  color: var(--bg-color);
+}
+
+body.dark-mode nav a:hover {
+  background-color: var(--bg-color);
+  color: #ffffff;
+}
+
+body.dark-mode legend {
+  color: rgb(21, 65, 225);
+}
+
+body.dark-mode header {
+  background-color: var(--secondary-color);
+}
+
+body.dark-mode .skill-card {
+  background-color: var(--secondary-color);
+}
+
+body.dark-mode .skill-card h3 {
+  color: var(--primary-color);
+}
+
+body.dark-mode footer {
+  color: #9ca3af;
+  border-top-color: #374151;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #1f2937;
+  border-color: #4b5563;
+  color: #131822;
+}
+
+body.dark-mode fieldset {
+  background-color: #1f2937;
+  border-color: #0c182a;
 }
