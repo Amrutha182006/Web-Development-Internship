@@ -58,7 +58,6 @@ task_3/
 1. Form validation with live error/success messages (DOM updates)
 2. Dark mode toggle (🌙/☀️ icon in header) with localStorage persistence
 3. Live greeting + current time (updates every second via setInterval)
-4. Image lightbox zoom (click profile photo for fullscreen overlay)
 
 **Event handling:**
 - `DOMContentLoaded` – initializes all listeners and features
@@ -101,7 +100,7 @@ task_3/
 - `toggleDarkMode/loadDarkModePreference` manage theme state
 - `updateGreeting` generates dynamic time-based content
 
-**Interactive Features (3+ required):**
+**Interactive Features:**
 1. Form validation – real-time error messages + field focus
 2. Dark mode toggle – persistent theme switching with icon change
 3. Live time – updates every second based on current hour
