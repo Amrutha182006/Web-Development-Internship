@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --b-color: ivory;
+    --t-color: rgb(37, 26, 4);
+}
+
+/* MENU PAGE - FULL BACKGROUND IMAGE */
+.menu-page {
+    padding-top: 80px;
+    min-height: 100vh;
+    position: relative;
+    /* ← Container for background */
+    padding: 4rem 2rem;
+    background: transparent;
+}
+
+/* Background image overlay */
+.menu-page::before {
+    content: '';
+    position: fixed;
+    /* ← Stays in place when scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/food1.png');
+    /* ← Your image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.35);
+    /* ← Darkens like homepage */
+    z-index: -2;
+    /* ← Behind cards */
+}
+
+/* Top gradient overlay using primary color */
+.menu-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px; /* Height of the top gradient area */
+    background: linear-gradient(to bottom, var(--pri-color), transparent);
+    z-index: -1; /* Above image, below content */
+    pointer-events: none;
+}
+
+/* Body overlay for readability */
+body {
+    background: rgba(0, 0, 0, 0.5)
+     !important;
+     z-index: 1;
+    /* ← Dark overlay */
+}
+
+
+h1 {
+    color: ivory;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow:0 2px 10px rgba(239, 235, 114, 0.6);
+    text-decoration: underline dotted rgb(178, 197, 8);
+}
+
+.menu-page {
+    padding-top: 80px;
+    padding-left: 10%;
+    background: transparent;
+    /* Transparent over body bg */
+}
+/* Ensure the container allows the rows to align */
+.menu-cards {
+    max-width: 1200px;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem; /* Spacing between rows */
+    padding: 0 2rem;
+}
+
+/* New Wrapper for Image + Card */
+.menu-group {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center all lists */
+    gap: 0;
+    width: 100%;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+/* The Zig-Zag: Every second row is reversed */
+.menu-group:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* Image styling (Dynamic size based on shortest list) - Half hidden behind card */
+.card-image {
+    /* Size will be set dynamically via JavaScript */
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 4px solid rgba(239, 235, 114, 0.3);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.1s linear, width 0.3s ease, height 0.3s ease;
+}
+
+/* Margin will be set dynamically via JavaScript */
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.1s linear;
+}
+
+/* Card adjustments to work with the row */
+.category-card {
+    width: 400px; /* Narrower width for more compact lists */
+    flex-shrink: 0;
+    background: var(--pri-color);
+    border-radius: 30px;
+    padding: 2rem 3rem 3rem 3rem; /* Reduced top padding to bring heading closer */
+    backdrop-filter: blur(10px);
+    border: 6px solid rgba(219, 224, 223, 0.2);
+    position: relative;
+    z-index: 2; /* Above the image */
+    overflow: visible; /* Allow image to show behind */
+}
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.category-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; /* Increased from 1.8rem */
+    font-weight: 900;
+    margin-bottom: 0.8rem; /* Reduced from 1.5rem to bring closer to top */
+    margin-top: 0; /* Ensure no top margin */
+    color: var(--b-color);
+    position: relative;
+    z-index: 2;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem 2rem 0;
+    border-bottom: 1px solid rgba(55, 228, 191, 0.5);
+    font-size: 1.5rem; /* Increased from 1.2rem */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    gap: 3rem;
+    color: rgba(255, 255, 240, 0.75);
+
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item span {
+    font-weight: 400;
+    font-size: 1.5rem; /* Match menu item font size */
+    margin-left: auto;
+    white-space: nowrap;
+    padding-left: 1rem;
+}
+
+/* HOVER LIFT EFFECT */
+.category-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(21, 18, 18, 0.6), 0 0 20px rgba(0, 128, 96, 0.3); /* Reduced shadow with subtle green glow */
+    border-color: rgba(0, 128, 96, 0.85); /* Royal teal/emerald green border - elegant and regal */
+}
+
+.category-card:hover h3 {
+    color: ivory;
+    text-shadow: 0 2px 10px rgba(239, 235, 114, 0.8);
+}
+
+.category-card:hover::before {
+    height: 6px;
+    box-shadow: 0 2px 10px rgba(2, 39, 31, 0.3);
+}
+
+.category-image {
+    position: sticky;
+    top: 150px;
+    /* Sticks below navbar */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* Circle shape */
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s linear;
+}
+
+/* Position each behind its card */
+.starters-image {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+}
+
+.mains-image {
+    position: absolute;
+    top: 35%;
+    right: 10%;
+}
+
+.desserts-image {
+    position: absolute;
+    bottom: 25%;
+    left: 15%;
+}
+
+.drinks-image {
+    position: absolute;
+    top: 55%;
+    right: 5%;
+}
+@media (max-width: 768px) {
+    .category-card:nth-child(odd),
+    .category-card:nth-child(even) {
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+}
+
+.menu-cta {
+    margin: 3rem auto 2rem;
+    text-align: center;
+}
+
+.book-table-btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    border-radius: 999px;
+    border: 2px solid rgba(239, 235, 114, 0.8);
+    color: ivory;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    background: var(--pri-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.book-table-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(0, 128, 96, 0.8);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}

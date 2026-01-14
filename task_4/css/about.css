@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --b-color: ivory;
+    --t-color: rgb(37, 26, 4);
+}
+
+/* ABOUT PAGE - FULL BACKGROUND IMAGE */
+.about-section {
+    padding: 4rem 2rem;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 150px;
+    padding-left: 10%;
+    background: transparent;
+}
+
+/* Background image overlay */
+.about-section::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/food1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.35);
+    z-index: -2;
+}
+
+/* Body overlay for readability */
+body {
+    background: rgba(0, 0, 0, 0.3) !important;
+    z-index: 1;
+}
+
+h1 {
+    color: ivory;
+    text-shadow: 0 2px 10px rgba(239, 235, 114, 0.6);
+    text-decoration: underline dotted rgb(178, 197, 8);
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem;
+}
+
+.about-card {
+    width: 800px;
+    max-width: 100%;
+    background: var(--pri-color);
+    border-radius: 30px;
+    padding: 3rem 4rem;
+    backdrop-filter: blur(10px);
+    border: 6px solid rgba(219, 224, 223, 0.2);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 128, 96, 0.5);
+    transition: height 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-content {
+    color: rgba(255, 255, 240, 0.9);
+}
+
+.about-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 240, 0.85);
+}
+
+.about-text:last-child {
+    margin-bottom: 0;
+}
+
+.about-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(21, 18, 18, 0.6), 0 0 20px rgba(0, 128, 96, 0.3);
+    border-color: rgba(0, 128, 96, 0.85);
+}
+
+.about-card:hover::before {
+    height: 6px;
+    box-shadow: 0 2px 10px rgba(2, 39, 31, 0.3);
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding-left: 5%;
+    }
+    
+    .about-card {
+        width: 100%;
+        padding: 2rem 2rem;
+    }
+    
+    .about-text {
+        font-size: 1rem;
+    }
+}
