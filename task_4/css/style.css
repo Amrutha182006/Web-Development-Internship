@@ -19,20 +19,25 @@ body {
 }
 
 .navbar {
-    position: static;
+    position: fixed; /* Changed to fixed so it stays at the top while scrolling */
+    top: 0;
+    left: 0;
     width: 100%;
-    background:var(--pri-color);
-    backdrop-filter: blur(11%);
-    z-index: 10;
-    padding: 1rem 0;
+    background: var(--pri-color);
+    /* Note: backdrop-filter uses pixels for blur, not percentages */
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1.5rem 0; /* Increased from 1rem to 1.5rem to make it "broader" */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2); /* Subtle gold underline for the whole nav */
 }
 
 .nav-container {
-    max-width: 1400px;
+    max-width: 1200px; /* Slightly narrower max-width makes the center feel more focused */
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 5%; /* Percentage padding helps with centering on different screens */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Keeps logo on left and menu on right */
     align-items: center;
 }
 
@@ -46,24 +51,23 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 0;
-    /* No gap for edge-to-edge */
-    width: 100%;
-    justify-content: space-around;
-    /* Distributes across full width */
+    gap: 1rem; /* Re-introducing a small gap looks more "polished" than 0 gap */
+    width: auto; /* Changed from 100% so it doesn't stretch unnaturally */
+    justify-content: flex-end; 
 }
 
 .nav-link {
     color: #fff;
-    text-decoration:double;
-    font-weight: 900;
-    padding: 0.8rem 1.5rem;
+    text-decoration: none; /* 'double' often looks messy; 'none' is cleaner with your custom underline */
+    font-weight: 600; /* 900 can sometimes be too heavy for Poppins */
+    padding: 1rem 2rem; /* Increased horizontal padding for a broader feel */
     position: relative;
-    flex: 1;
     text-align: center;
-    /* Equal spacing */
+    transition: 0.3s;
+    letter-spacing: 1px;
+    text-transform: uppercase; /* Matching the elegance of your form labels */
+    font-size: 0.9rem;
 }
-
 .nav-link::after {
     content: '';
     position: absolute;
@@ -119,12 +123,38 @@ body {
     letter-spacing: 0.5em;
     position: relative; z-index: 2;
 }
+.main-footer {
+    background: #121212;
+    color: ivory;
+    padding: 40px 10% 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.3); /* Subtle gold line */
+    margin-top: 50px;
+}
 
-footer,a{
-   color: var(--bg-color);
-   text-decoration: none;
-   text-align: center;
-   font-weight: 100;
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-info h3, .footer-links h4, .footer-contact h4 {
+    color: #d4af37; /* Gold color */
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-links ul { list-style: none; padding: 0; }
+.footer-links ul li { margin-bottom: 8px; }
+.footer-links a { color: ivory; text-decoration: none; transition: 0.3s; }
+.footer-links a:hover { color: #d4af37; padding-left: 5px; }
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
 @media (max-width: 768px) {
     .nav-menu {
