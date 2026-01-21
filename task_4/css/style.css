@@ -156,14 +156,41 @@ body {
     font-size: 0.8rem;
     opacity: 0.7;
 }
+/* Mobile Styles for Index Page (Max-width: 768px) */
 @media (max-width: 768px) {
+    /* Prevent horizontal scrolling on the whole page */
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav-container {
+        flex-direction: column; /* Stacks logo above the menu */
+        text-align: center;
+        padding: 1rem 0;
+    }
+
     .nav-menu {
+        display: flex;
+        flex-wrap: wrap; /* Allows links to wrap to a second line if needed */
+        justify-content: center;
         gap: 0.5rem;
-        padding: 0 1rem;
+        padding: 0.5rem;
+        width: 100%;
     }
 
     .nav-link {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem; /* Slightly smaller for better fit */
+        flex: none; /* Prevents links from stretching unnaturally */
+    }
+
+    /* Hero/Main Section Adjustments */
+    .hero-content h1 {
+        font-size: 2rem; /* Reduces massive titles for mobile */
+        line-height: 1.2;
+    }
+
+    .container, .section {
+        padding: 2rem 1rem; /* Gives more "breathing room" on the sides */
     }
 }

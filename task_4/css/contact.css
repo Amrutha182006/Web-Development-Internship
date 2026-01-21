@@ -326,9 +326,42 @@ input:focus, .time-select:focus {
 }
 
 @media (max-width: 600px) {
-
+    /* Stack the form rows and seating cards vertically */
     .form-row,
     .sitting-options {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Adjust the main form container for small screens */
+    .booking-form {
+        padding: 1.5rem;
+        margin: 1rem;
+        width: calc(100% - 2rem);
+    }
+
+    /* Make seating cards more touch-friendly */
+    .sitting-card {
+        padding: 1.2rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .sitting-card img {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+    /* Scaling down typography for mobile */
+    .booking-form h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    input, select, button {
+        font-size: 1rem;
+        padding: 0.8rem;
     }
 }

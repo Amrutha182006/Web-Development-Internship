@@ -281,3 +281,59 @@ h1 {
     background: rgba(0, 128, 96, 0.8);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
 }
+
+/* MOBILE RESPONSIVE STYLES - MENU PAGE */
+@media (max-width: 768px) {
+    .menu-page {
+        padding: 2rem 1rem; /* Reduced padding for mobile */
+        padding-top: 100px; /* Space for fixed navbar */
+        padding-left: 0; /* Resetting the desktop 10% padding */
+    }
+
+    .menu-cards {
+        gap: 3rem; /* Reduced spacing between categories */
+        padding: 0 1rem;
+    }
+
+    .menu-group, 
+    .menu-group:nth-child(even) {
+        flex-direction: column; /* Stacks image on top of card */
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .card-image {
+        width: 150px !important; /* Force smaller size on mobile */
+        height: 150px !important;
+        margin: 0 auto !important; /* Centers the circular image */
+        z-index: 3;
+    }
+
+    .category-card {
+        width: 100%; /* Card takes full available width */
+        max-width: 450px;
+        padding: 2rem 1.5rem; /* More compact padding for mobile */
+        border-width: 3px; /* Slightly thinner border for mobile */
+        margin: 0 auto;
+    }
+
+    .menu-item {
+        font-size: 1.1rem; /* Smaller text to prevent wrapping */
+        gap: 1rem;
+        padding: 0.8rem 0;
+    }
+
+    .menu-item span {
+        font-size: 1.1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Scaled down heading */
+        margin-bottom: 1.5rem;
+    }
+
+    /* Hide absolute positioned decorative images on mobile to prevent overlap */
+    .starters-image, .mains-image, .desserts-image, .drinks-image {
+        display: none;
+    }
+}
