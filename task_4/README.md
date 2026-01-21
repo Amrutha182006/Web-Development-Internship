@@ -1,4 +1,4 @@
-# S Amrutha – Emerald Dynasty Restaurant Interface (Task 3)
+# S Amrutha – Emerald Dynasty Restaurant Interface (Task 4)
 
 This project adds JavaScript interactivity to the **Emerald Dynasty** luxury restaurant interface. The goal is to demonstrate **DOM manipulation**, **advanced CSS styling (Glassmorphism)**, **form validation**, and **interactive seating selections** using **vanilla JavaScript**.
 
@@ -22,7 +22,7 @@ The Emerald Dynasty interface now includes **client-side form validation** for r
 
 ## 1. Clone or Download the Repository
 
-git clone https://github.com/Amrutha182006/emarald-dynasty
+git clone https://github.com/Amrutha182006/emerald-dynasty
 
 ## 2. File Structure
 
@@ -54,10 +54,10 @@ emarald-dynasty/
     ├── food1.png – Food showcase image
     └── icon1.png – UI icon asset  – Background pattern for About section
     └── screenshot/
-│       ├── dk-view.jpeg – Desktop view with glassmorphism
-│       ├── mb-view.jpeg  – Mobile responsive view
-│       ├── css-valid.jpeg    
-│       └── html-valid.jpeg    
+        ├── dk-view.jpeg – Desktop view with glassmorphism
+        ├── mb-view.jpeg  – Mobile responsive view
+        ├── css-valid.jpeg    
+        └── html-valid.jpeg    
 ```
 
 ## 3. Run Locally
