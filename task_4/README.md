@@ -22,7 +22,7 @@ The Emerald Dynasty interface now includes **client-side form validation** for r
 
 ## 1. Clone or Download the Repository or Access through direct link
 
-git clone https://github.com/Amrutha182006/emerald-dynasty
+git clone https://github.com/Amrutha182006/Web-Development-Internship/tree/main/task_4
 
 deployed link https://web-development-internship.vercel.app/index.html
 
