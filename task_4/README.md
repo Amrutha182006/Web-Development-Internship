@@ -20,14 +20,16 @@ The Emerald Dynasty interface now includes **client-side form validation** for r
 
 # II. Setup Instructions
 
-## 1. Clone or Download the Repository
+## 1. Clone or Download the Repository or Access through direct link
 
 git clone https://github.com/Amrutha182006/emerald-dynasty
+
+deployed link https://web-development-internship.vercel.app/index.html
 
 ## 2. File Structure
 
 ```
-emarald-dynasty/
+task-4/
 ├── index.html        – Landing page with semantic structure
 ├── menu.html         – Restaurant menu display
 ├── about.html        – Heritage and philosophy with blurred background
