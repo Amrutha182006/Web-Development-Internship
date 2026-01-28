@@ -1,0 +1,161 @@
+/* 1. CSS Variables (Theming & Tokens) */
+:root {
+  --primary: #4361ee;
+  --primary-dark: #3a0ca3;
+  --accent: #10b981;
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --radius: 16px;
+  --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  --container-width: 1100px;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+  --bg-body: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+}
+
+/* 2. Base Reset & Advanced Selectors */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* 3. Main Layout with CSS Grid */
+.main-content {
+  display: grid;
+  grid-template-columns: minmax(1.5rem, 1fr) minword(auto, var(--container-width)) minmax(1.5rem, 1fr);
+}
+
+/* Aligning sections to the center column of the main grid */
+section {
+  grid-column: 2;
+  padding: 5rem 0;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: reveal 0.8s ease-out forwards;
+}
+
+/* 4. Mobile-First Component Styles */
+
+/* About Section Grid */
+.about__container {
+  display: grid;
+  gap: 2rem;
+  /* Default: Mobile (stacked) */
+}
+
+.about__image-wrapper {
+  justify-self: center;
+  position: relative;
+}
+
+.about__img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+}
+
+/* Skills Grid */
+.skills__grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile default */
+  gap: 1.5rem;
+}
+
+/* BEM: Skill Card */
+.skill-card {
+  background: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: var(--transition-smooth);
+}
+
+.skill-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Advanced Selector: Highlighting the first item in the list */
+.skill-card__list li:first-child {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Form Polish */
+.form__group:focus-within .form__label {
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+.form__input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid transparent;
+  background: rgba(0,0,0,0.03);
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+}
+
+body.dark-mode .form__input {
+  background: rgba(255,255,255,0.05);
+}
+
+.form__input:focus {
+  outline: none;
+  background: var(--bg-card);
+  border-color: var(--primary);
+}
+
+/* 5. Responsive Design (Desktop Viewport Upgrades) */
+@media (min-width: 768px) {
+  .about__container {
+    grid-template-columns: 1fr 2fr; /* Desktop: Side-by-side */
+    align-items: center;
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns on desktop */
+  }
+
+  .about__img {
+    width: 280px;
+    height: 350px;
+    border-radius: var(--radius); /* Rectangular on desktop for a "polished" look */
+  }
+}
+
+/* 6. Keyframe Animations */
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
