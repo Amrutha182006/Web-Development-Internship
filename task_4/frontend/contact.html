@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Table - Emerald Dynasty</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="icon" href="images/icon1.png" type="image/png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Same navbar as index.html -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="logo">Emerald Dynasty</h2>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="menu.html" class="nav-link">Menu</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h1>BOOK A TABLE</h1>
+        <div class="contact-card">
+            <form class="booking-form">
+                <div class="form-group">
+                    <label for="name">Customer Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Select Time Slot</label>
+                        <select id="time" name="time" class="time-select" required>
+                            <option value="" disabled selected>Choose a time</option>
+                            <option value="12:00">12:00 PM (Lunch)</option>
+                            <option value="13:30">01:30 PM (Lunch)</option>
+                            <option value="18:00">06:00 PM (Dinner)</option>
+                            <option value="19:30">07:30 PM (Dinner)</option>
+                            <option value="21:00">09:00 PM (Late Night)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Type of Sitting</label>
+                    <div class="sitting-options">
+                        <label class="sitting-card">
+                            <input type="radio" name="sitting" value="indoor" required>
+                            <div class="sitting-content">
+                                <img src="images/ty.jpeg" alt="Indoor">
+                                <div class="sitting-details">
+                                    <span class="sitting-name">Indoor Classic (4 chairs)</span>
+                                    <span class="sitting-price">$10.00/chair</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="sitting-card">
+                            <input type="radio" name="sitting" value="outdoor">
+                            <div class="sitting-content">
+                                <img src="images/type_2.png" alt="Outdoor">
+                                <div class="sitting-details">
+                                    <span class="sitting-name">Outdoor Garden (10-12 chairs)</span>
+                                    <span class="sitting-price">$15.00/chair</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="sitting-card">
+                            <input type="radio" name="sitting" value="vip">
+                            <div class="sitting-content">
+                                <img src="images/tyoe_3.png" alt="VIP">
+                                <div class="sitting-details">
+                                    <span class="sitting-name">VIP Lounge (10-15 chairs)</span>
+                                    <span class="sitting-price">$50.00/chair</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="sitting-card">
+                            <input type="radio" name="sitting" value="vip">
+                            <div class="sitting-content">
+                                <img src="images/type_4.png" alt="VIP">
+                                <div class="sitting-details">
+                                    <span class="sitting-name">VIP outdoor Lounge (10-15 chairs)</span>
+                                    <span class="sitting-price">$100.00/chair</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Contact No.</label>
+                        <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email (Optional)</label>
+                        <input type="email" id="email" name="email" placeholder="email@example.com">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">RESERVE TABLE</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="receiptModal" class="modal">
+        <div class="receipt-card">
+            <div class="receipt-header">
+                <h2>EMERALD DYNASTY</h2>
+                <p>Reservation Confirmed</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="receipt-body">
+                <div class="receipt-row"><span>Date:</span> <strong id="r-date">--</strong></div>
+                <div class="receipt-row"><span>Time:</span> <strong id="r-time">--</strong></div>
+                <div class="receipt-row"><span>Guests:</span> <strong id="r-guests">--</strong></div>
+                <div class="receipt-row"><span>Sitting:</span> <strong id="r-sitting">--</strong></div>
+                <hr>
+                <div class="receipt-row total">
+                    <span>Booking Fee</span>
+                    <strong id="r-price">$0.00</strong>
+                </div>
+            </div>
+
+            <div class="receipt-footer">
+                <p>Thank you for choosing elegance.</p>
+                <div class="cut-line"></div>
+                <button onclick="closeReceipt()" class="close-btn">DONE</button>
+            </div>
+        </div>
+    </div>
+<script src="js/contact.js"></script>
+</body>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <h3>Emerald Dynasty</h3>
+            <p>Experience the peak of culinary elegance.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Book a Table</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h4>Visit Us</h4>
+            <p>123 Dynasty Lane, Luxury District</p>
+            <p>Open: 12:00 PM - 11:00 PM</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Emerald Dynasty | Internship Project</p>
+    </div>
+</footer>
+
+</html>
