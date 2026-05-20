@@ -20,4 +20,11 @@ public class BookingController {
 
     }
 
+    @GetMapping("/test")
+    public String test() {
+
+        return "Booking Controller Working";
+
+    }
+
 }

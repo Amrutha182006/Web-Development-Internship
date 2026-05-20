@@ -22,7 +22,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        const response = await fetch("http://localhost:3000/book-seat", {
+        const response = await fetch("http://localhost:8080/book-seat", {
 
             method: "POST",
 
