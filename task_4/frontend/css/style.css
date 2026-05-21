@@ -37,7 +37,7 @@ body {
     margin: 0 auto;
     padding: 0 5%; /* Percentage padding helps with centering on different screens */
     display: flex;
-    justify-content: space-between; /* Keeps logo on left and menu on right */
+    justify-content:space-between; /* Keeps logo on left and menu on right */
     align-items: center;
 }
 

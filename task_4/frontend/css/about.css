@@ -3,14 +3,12 @@
     color: ivory;
     line-height: 1.8;
      /* Background Image setup */
-    background: linear-gradient(rgba(0, 0, 0, 0.69), rgba(0, 0, 0, 0.603)), url('../images/ptrn.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.841), rgba(0, 0, 0, 0.748)), url('../images/ptrn.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     
 }
-
-
 
 .about-section::before {
     content: "";
