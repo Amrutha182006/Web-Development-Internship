@@ -1,49 +1,56 @@
-const form = document.getElementById("login-form");
+document
+    .getElementById("loginForm")
 
-form.addEventListener("submit", async (e) => {
+    .addEventListener("submit", async function (e) {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+        const email =
+            document.getElementById("email").value;
 
-    const loginData = {
-        email: email,
-        password: password
-    };
+        const password =
+            document.getElementById("password").value;
 
-    try {
+        try {
 
-        const response = await fetch("http://localhost:8080/auth/login", {
+            const response = await fetch(
+                "http://localhost:8080/auth/login",
+                {
+                    method: "POST",
 
-            method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
 
-            body: JSON.stringify(loginData)
-        });
+            if (!response.ok) {
 
-        if (!response.ok) {
-            throw new Error("Login Failed");
+                throw new Error("Invalid credentials");
+            }
+
+            const data = await response.json();
+
+            console.log(data);
+
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+
+            alert("Login Successful");
+
+            window.location.href = "index.html";
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Login Failed");
         }
-
-        const data = await response.json();
-
-        console.log(data);
-
-        localStorage.setItem("token", data.token);
-
-        alert("Login Successful!");
-
-        window.location.href = "index.html";
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Invalid email or password");
-    }
-
-});
+    });
