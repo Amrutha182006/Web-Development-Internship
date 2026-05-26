@@ -3,6 +3,7 @@ package com.emeralddynasty.backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.emeralddynasty.backend.entity.Booking;
@@ -47,7 +48,7 @@ public class BookingService {
                 .findByEmail(email);
     }
 
-    public void cancelBooking(Long id) {
+    public void cancelBooking(@NonNull Long id) {
 
         bookingRepository.deleteById(id);
     }
