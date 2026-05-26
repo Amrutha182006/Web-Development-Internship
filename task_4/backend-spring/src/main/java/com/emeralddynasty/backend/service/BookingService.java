@@ -1,5 +1,7 @@
 package com.emeralddynasty.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,24 @@ public class BookingService {
 
         return bookingRepository.save(booking);
 
+    }
+
+    public List<Booking> getMyBookings(
+            HttpServletRequest request) {
+
+        String authHeader = request.getHeader("Authorization");
+
+        String token = authHeader.substring(7);
+
+        String email = jwtUtil.extractEmail(token);
+
+        return bookingRepository
+                .findByEmail(email);
+    }
+
+    public void cancelBooking(Long id) {
+
+        bookingRepository.deleteById(id);
     }
 
 }

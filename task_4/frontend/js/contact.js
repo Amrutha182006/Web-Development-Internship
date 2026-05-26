@@ -1,3 +1,16 @@
+const token =
+    localStorage.getItem("token");
+
+if (!token) {
+
+    alert(
+        "Please login to book you table ! "
+    );
+
+    window.location.href =
+        "login.html";
+}
+
 const form = document.querySelector(".booking-form");
 
 form.addEventListener("submit", async (e) => {

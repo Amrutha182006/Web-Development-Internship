@@ -24,64 +24,66 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
+        @Bean
+        public PasswordEncoder passwordEncoder() {
 
-        return new BCryptPasswordEncoder();
-    }
+                return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration config)
-            throws Exception {
+        @Bean
+        public AuthenticationManager authenticationManager(
+                        AuthenticationConfiguration config)
+                        throws Exception {
 
-        return config.getAuthenticationManager();
-    }
+                return config.getAuthenticationManager();
+        }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(
-            HttpSecurity http)
-            throws Exception {
+        @Bean
+        public SecurityFilterChain securityFilterChain(
+                        HttpSecurity http)
+                        throws Exception {
 
-        http
+                http
 
-                .cors(cors -> cors.configurationSource(
-                        corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
+                                .cors(cors -> cors.configurationSource(
+                                                corsConfigurationSource()))
+                                .csrf(csrf -> csrf.disable())
 
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/auth/**",
-                                "/book-seat",
-                                "/bookings/**")
-                        .permitAll()
-                        .anyRequest().authenticated());
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers(
+                                                                "/auth/**",
+                                                                "/book-seat",
+                                                                "/bookings/**",
+                                                                "/my-bookings",
+                                                                "/cancel/**")
+                                                .permitAll()
+                                                .anyRequest().authenticated());
 
-        return http.build();
-    }
+                return http.build();
+        }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+        @Bean
+        public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration = new CorsConfiguration();
+                CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(
-                List.of("http://127.0.0.1:5500"));
+                configuration.setAllowedOrigins(
+                                List.of("http://127.0.0.1:5500"));
 
-        configuration.setAllowedMethods(
-                List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                configuration.setAllowedMethods(
+                                List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        configuration.setAllowedHeaders(
-                List.of("*"));
+                configuration.setAllowedHeaders(
+                                List.of("*"));
 
-        configuration.setAllowCredentials(true);
+                configuration.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
-        source.registerCorsConfiguration(
-                "/**",
-                configuration);
+                source.registerCorsConfiguration(
+                                "/**",
+                                configuration);
 
-        return source;
-    }
+                return source;
+        }
 }
