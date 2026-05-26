@@ -3,6 +3,7 @@ package com.emeralddynasty.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import com.emeralddynasty.backend.entity.Booking;
@@ -37,7 +38,7 @@ public class BookingController {
     @DeleteMapping("/cancel/{id}")
 
     public void cancelBooking(
-            @PathVariable Long id) {
+            @PathVariable @NonNull Long id) {
 
         bookingService.cancelBooking(id);
     }
