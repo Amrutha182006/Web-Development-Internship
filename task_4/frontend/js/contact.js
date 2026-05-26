@@ -20,14 +20,19 @@ form.addEventListener("submit", async (e) => {
 
     };
 
+
     try {
+
+        const token =
+            localStorage.getItem("token");
 
         const response = await fetch("http://localhost:8080/book-seat", {
 
             method: "POST",
 
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
 
             body: JSON.stringify(bookingData)
@@ -44,7 +49,7 @@ form.addEventListener("submit", async (e) => {
 
     }
 
-    catch(err) {
+    catch (err) {
 
         console.log(err);
 

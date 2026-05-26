@@ -1,5 +1,5 @@
 document
-    .getElementById("loginForm")
+    .getElementById("login-form")
 
     .addEventListener("submit", async function (e) {
 
@@ -31,12 +31,14 @@ document
 
             if (!response.ok) {
 
-                throw new Error("Invalid credentials");
+                alert("Invalid email or password");
+
+                return;
             }
 
             const data = await response.json();
 
-            console.log(data);
+            // console.log(data);
 
             localStorage.setItem(
                 "token",
@@ -45,7 +47,7 @@ document
 
             alert("Login Successful");
 
-            window.location.href = "index.html";
+            window.location.href = "contact.html";
 
         } catch (error) {
 
