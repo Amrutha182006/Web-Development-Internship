@@ -1,6 +1,3 @@
-/* Form Styling */
-
-/* --- Insert this before .booking-form --- */
 
 .contact-section {
     min-height: 100vh;
@@ -8,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     /* Background Image setup */
     background: linear-gradient(rgba(0, 0, 0, 0.366), rgba(0, 0, 0, 0.251)), url('../images/bg.png');
@@ -17,7 +14,7 @@
     background-attachment: fixed;
     /* Keeps image still while scrolling */
 
-    padding: 100px 20px;
+    padding: 140px 20px 80px;
 }
 
 .contact-section h1 {
@@ -88,7 +85,8 @@ label {
     color: white;
 }
 
-input, .time-select {
+input,
+.time-select {
     padding: 14px 15px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -100,11 +98,14 @@ input, .time-select {
 }
 
 /* The "Pop" effect on focus */
-input:focus, .time-select:focus {
+input:focus,
+.time-select:focus {
     background: rgba(255, 255, 255, 0.1);
     border-color: #efeb72;
-    transform: translateY(-2px); /* Lifts the input slightly */
-    box-shadow: 0 5px 15px rgba(239, 235, 114, 0.2); /* Soft gold glow */
+    transform: translateY(-2px);
+    /* Lifts the input slightly */
+    box-shadow: 0 5px 15px rgba(239, 235, 114, 0.2);
+    /* Soft gold glow */
 }
 
 /* Hover effect for the sitting cards */
@@ -121,10 +122,11 @@ input:focus, .time-select:focus {
     box-shadow: 0 0 20px rgba(239, 235, 114, 0.3);
     transform: scale(1.05);
 }
+
 /* Interactive Sitting Cards */
 .sitting-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
     margin-top: 10px;
     width: 100%;
@@ -137,7 +139,7 @@ input:focus, .time-select:focus {
     border-radius: 12px;
     overflow: hidden;
     border: 2px solid transparent;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0.6;
     /* Dimmed until selected */
 }
@@ -259,19 +261,22 @@ input:focus, .time-select:focus {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 100%; /* Ensures inputs stretch to fill the form-row grid */
+    width: 100%;
+    /* Ensures inputs stretch to fill the form-row grid */
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    align-items: end; /* Keeps labels aligned even if one input is taller */
+    align-items: end;
+    /* Keeps labels aligned even if one input is taller */
 }
 
 /* Modal Background */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.8);
@@ -283,18 +288,27 @@ input:focus, .time-select:focus {
 
 /* Receipt Design */
 .receipt-card {
-    background: #fdfdfd; /* Off-white paper color */
+    background: #fdfdfd;
+    /* Off-white paper color */
     color: #333;
     width: 320px;
     padding: 2rem;
-    font-family: 'Courier New', Courier, monospace; /* Classic receipt font */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    font-family: 'Courier New', Courier, monospace;
+    /* Classic receipt font */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     position: relative;
     animation: slideUp 0.4s ease-out;
 }
 
-.receipt-header { text-align: center; margin-bottom: 1rem; }
-.receipt-header h2 { font-family: 'Playfair Display', serif; margin: 0; }
+.receipt-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.receipt-header h2 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
 
 .receipt-row {
     display: flex;
@@ -303,7 +317,11 @@ input:focus, .time-select:focus {
     font-size: 0.9rem;
 }
 
-.total { font-weight: bold; font-size: 1.1rem; margin-top: 15px; }
+.total {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
 
 .cut-line {
     border-top: 2px dashed #ccc;
@@ -320,12 +338,65 @@ input:focus, .time-select:focus {
     font-weight: bold;
 }
 
+#detailsSection {
+
+    display: none;
+}
+
+#successSection {
+
+    display: none;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.success-card {
+
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.success-card h2 {
+
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #d4af37;
+}
+
+.success-card p {
+
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.success-btn {
+
+    display: inline-block;
+    padding: 12px 25px;
+    background: #d4af37;
+    color: black;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
 @keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 600px) {
+
     /* Stack the form rows and seating cards vertically */
     .form-row,
     .sitting-options {
@@ -360,7 +431,9 @@ input:focus, .time-select:focus {
         margin-bottom: 1.5rem;
     }
 
-    input, select, button {
+    input,
+    select,
+    button {
         font-size: 1rem;
         padding: 0.8rem;
     }

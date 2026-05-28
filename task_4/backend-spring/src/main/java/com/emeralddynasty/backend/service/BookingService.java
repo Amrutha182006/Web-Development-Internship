@@ -21,6 +21,19 @@ public class BookingService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    public boolean isAvailable(
+            Booking booking) {
+
+        List<Booking> bookings = bookingRepository
+                .findByDateAndTimeSlotAndSeatingType(
+
+                        booking.getDate(),
+                        booking.getTimeSlot(),
+                        booking.getSeatingType());
+
+        return bookings.size() < 5;
+    }
+
     public Booking saveBooking(Booking booking, HttpServletRequest request) {
 
         String authHeader = request.getHeader("Authorization");

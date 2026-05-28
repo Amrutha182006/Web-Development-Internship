@@ -16,6 +16,14 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+    @PostMapping("/check-availability")
+    public boolean checkAvailability(
+            @RequestBody Booking booking) {
+
+        return bookingService
+                .isAvailable(booking);
+    }
+
     @PostMapping("/book-seat")
 
     public Booking bookSeat(

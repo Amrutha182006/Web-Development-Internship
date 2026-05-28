@@ -35,15 +35,12 @@
         <h1>BOOK A TABLE</h1>
         <div class="contact-card">
             <form class="booking-form">
-                <div class="form-group">
-                    <label for="name">Customer Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="date">Date</label>
-                        <input type="date" id="date" name="date" required>
+                <div id="availabilitySection">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -57,97 +54,90 @@
                             <option value="21:00">09:00 PM (Late Night)</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label>Type of Sitting</label>
-                    <div class="sitting-options">
-                        <label class="sitting-card">
-                            <input type="radio" name="sitting" value="indoor" required>
-                            <div class="sitting-content">
-                                <img src="images/ty.jpeg" alt="Indoor">
-                                <div class="sitting-details">
-                                    <span class="sitting-name">Indoor Classic (4 chairs)</span>
-                                    <span class="sitting-price">$10.00/chair</span>
-                                </div>
-                            </div>
-                        </label>
-                        <label class="sitting-card">
-                            <input type="radio" name="sitting" value="outdoor">
-                            <div class="sitting-content">
-                                <img src="images/type_2.png" alt="Outdoor">
-                                <div class="sitting-details">
-                                    <span class="sitting-name">Outdoor Garden (10-12 chairs)</span>
-                                    <span class="sitting-price">$15.00/chair</span>
-                                </div>
-                            </div>
-                        </label>
-                        <label class="sitting-card">
-                            <input type="radio" name="sitting" value="vip">
-                            <div class="sitting-content">
-                                <img src="images/tyoe_3.png" alt="VIP">
-                                <div class="sitting-details">
-                                    <span class="sitting-name">VIP Lounge (10-15 chairs)</span>
-                                    <span class="sitting-price">$50.00/chair</span>
-                                </div>
-                            </div>
-                        </label>
-                        <label class="sitting-card">
-                            <input type="radio" name="sitting" value="vip">
-                            <div class="sitting-content">
-                                <img src="images/type_4.png" alt="VIP">
-                                <div class="sitting-details">
-                                    <span class="sitting-name">VIP outdoor Lounge (10-15 chairs)</span>
-                                    <span class="sitting-price">$100.00/chair</span>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-group">
-                        <label for="phone">Contact No.</label>
-                        <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
+                        <label>Type of Sitting</label>
+                        <div class="sitting-options">
+                            <label class="sitting-card">
+                                <input type="radio" name="sitting" value="indoor" required>
+                                <div class="sitting-content">
+                                    <img src="images/ty.jpeg" alt="Indoor">
+                                    <div class="sitting-details">
+                                        <span class="sitting-name">Indoor Classic (4 chairs)</span>
+                                        <span class="sitting-price">$10.00/chair</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="sitting-card">
+                                <input type="radio" name="sitting" value="outdoor">
+                                <div class="sitting-content">
+                                    <img src="images/type_2.png" alt="Outdoor">
+                                    <div class="sitting-details">
+                                        <span class="sitting-name">Outdoor Garden (10-12 chairs)</span>
+                                        <span class="sitting-price">$15.00/chair</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="sitting-card">
+                                <input type="radio" name="sitting" value="vip">
+                                <div class="sitting-content">
+                                    <img src="images/tyoe_3.png" alt="VIP">
+                                    <div class="sitting-details">
+                                        <span class="sitting-name">VIP Lounge (10-15 chairs)</span>
+                                        <span class="sitting-price">$50.00/chair</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="sitting-card">
+                                <input type="radio" name="sitting" value="vip">
+                                <div class="sitting-content">
+                                    <img src="images/type_4.png" alt="VIP">
+                                    <div class="sitting-details">
+                                        <span class="sitting-name">VIP outdoor Lounge (10-15 chairs)</span>
+                                        <span class="sitting-price">$100.00/chair</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="email@example.com">
+                        <label for="guests"> Number of Guests </label>
+                        <input type="number" id="guests" name="guests" min="1" max="15"
+                            placeholder="Enter number of guests" required>
                     </div>
+                    <button type="button" id="checkAvailabilityBtn" class="submit-btn">CHECK AVAILABILITY</button>
+
                 </div>
 
-                <button type="submit" class="submit-btn">RESERVE TABLE</button>
+                <div id="detailsSection">
+                    <div class="form-group">
+                        <label for="name">Customer Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Contact No.</label>
+                            <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="email@example.com">
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">CONFIRM BOOKING</button>
+                </div>
             </form>
+            <div id="successSection">
+                <div class="success-card">
+                    <h2> Booking Confirmed! </h2>
+                    <p> Your reservation has been saved successfully. </p>
+                    <a href="profile.html" class="success-btn"> View My Bookings </a>
+                </div>
+            </div>
+
         </div>
     </section>
-
-    <div id="receiptModal" class="modal">
-        <div class="receipt-card">
-            <div class="receipt-header">
-                <h2>EMERALD DYNASTY</h2>
-                <p>Reservation Confirmed</p>
-                <div class="divider"></div>
-            </div>
-
-            <div class="receipt-body">
-                <div class="receipt-row"><span>Date:</span> <strong id="r-date">--</strong></div>
-                <div class="receipt-row"><span>Time:</span> <strong id="r-time">--</strong></div>
-                <div class="receipt-row"><span>Guests:</span> <strong id="r-guests">--</strong></div>
-                <div class="receipt-row"><span>Sitting:</span> <strong id="r-sitting">--</strong></div>
-                <hr>
-                <div class="receipt-row total">
-                    <span>Booking Fee</span>
-                    <strong id="r-price">$0.00</strong>
-                </div>
-            </div>
-
-            <div class="receipt-footer">
-                <p>Thank you for choosing elegance.</p>
-                <div class="cut-line"></div>
-                <button onclick="closeReceipt()" class="close-btn">DONE</button>
-            </div>
-        </div>
-    </div>
     <script src="js/auth.js"></script>
     <script src="js/contact.js"></script>
 </body>

@@ -55,7 +55,8 @@ public class SecurityConfig {
                                                                 "/book-seat",
                                                                 "/bookings/**",
                                                                 "/my-bookings",
-                                                                "/cancel/**")
+                                                                "/cancel/**",
+                                                                "/check-availability")
                                                 .permitAll()
                                                 .anyRequest().authenticated());
 

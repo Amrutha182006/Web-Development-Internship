@@ -20,6 +20,8 @@ public class Booking {
 
     private String seatingType;
 
+    private Integer guests;
+
     private String contactNumber;
 
     private String email;
@@ -61,6 +63,14 @@ public class Booking {
 
     public void setSeatingType(String seatingType) {
         this.seatingType = seatingType;
+    }
+
+    public void setGuests(Integer guests) {
+        this.guests = guests;
+    }
+
+    public Integer getGuests() {
+        return guests;
     }
 
     public String getContactNumber() {
