@@ -3,6 +3,7 @@ window.addEventListener(
     loadBookings
 );
 
+
 async function loadBookings() {
 
     const token =
@@ -26,45 +27,98 @@ async function loadBookings() {
         const bookings =
             await response.json();
 
-        const container =
-            document.getElementById(
-                "bookingContainer"
+        const today =
+            new Date()
+                .toISOString()
+                .split("T")[0];
+
+        const upcoming =
+            bookings.filter(
+                booking =>
+                    booking.date >= today
             );
 
-        container.innerHTML = "";
+        const history =
+            bookings.filter(
+                booking =>
+                    booking.date < today
+            );
 
-        bookings.forEach(booking => {
 
-            container.innerHTML += `
+        const upcomingContainer =
+            document.getElementById(
+                "upcomingBookings"
+            );
 
-                <div class="booking-card">
+        const historyContainer =
+            document.getElementById(
+                "bookingHistory"
+            );
 
-                    <p>
-                        Date:
-                        ${booking.date}
-                    </p>
+        upcomingContainer.innerHTML = "";
 
-                    <p>
-                        Time:
-                        ${booking.timeSlot}
-                    </p>
+        historyContainer.innerHTML = "";
 
-                    <p>
-                        Seating:
-                        ${booking.seatingType}
-                    </p>
+        upcoming.forEach(booking => {
 
-                    <button
-                        onclick="cancelBooking(${booking.id})">
-                        Cancel Booking
-                    </button>
+            upcomingContainer.innerHTML += `
 
-                    <hr>
+            <div class="booking-card">
 
-                </div>
-            `;
+            <p>
+                Date:
+                ${booking.date}
+            </p>
+
+            <p>
+                Time:
+                ${booking.timeSlot}
+            </p>
+
+            <p>
+                Seating:
+                ${booking.seatingType}
+            </p>
+
+            <button
+                onclick="cancelBooking(${booking.id})">
+
+                Cancel Booking
+
+            </button>
+
+        </div> `;
         });
 
+        history.forEach(booking => {
+
+            historyContainer.innerHTML += `
+
+        <div class="booking-card">
+
+            <p>
+                Date:
+                ${booking.date}
+            </p>
+
+            <p>
+                Time:
+                ${booking.timeSlot}
+            </p>
+
+            <p>
+                Seating:
+                ${booking.seatingType}
+            </p>
+
+            <p>
+                Completed Booking
+            </p>
+
+            <hr>
+
+        </div> `;
+        });
     }
 
     catch (error) {
@@ -105,7 +159,7 @@ async function cancelBooking(id) {
 
     }
 
-    catch(error) {
+    catch (error) {
 
         console.log(error);
 

@@ -6,29 +6,35 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Profile</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="css/profile.css">
 
 </head>
 
 <body>
 
-    <section class="profile-page">
+    <section class="profile-section">
 
         <h1 class="profile-title">
             My Bookings
         </h1>
 
-        <div id="bookingContainer">
-
+        <div class="booking-category">
+            <h2>Upcoming Bookings</h2>
+            <div id="upcomingBookings" class="bookings-grid"></div>
         </div>
+
+        <div class="booking-category">
+            <h2>Booking History</h2>
+            <div id="bookingHistory" class="bookings-grid"></div>
+        </div>
+
+
 
     </section>
 

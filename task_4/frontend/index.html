@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emerald Dynasty - Luxury Vegetarian Dining</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="icon" href="images/icon1.png" type="image/png">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
@@ -17,13 +18,13 @@
         <div class="nav-container">
             <div class="nav-wrapper">
                 <ul class="nav-menu" id="nav-menu">
-                                    <li> <a href="index.html" class="nav-link"> Home </a> </li>
-                <li> <a href="menu.html" class="nav-link"> Menu </a> </li>
-                <li> <a href="about.html" class="nav-link"> About Us </a> </li>
-                <li> <a href="profile.html" class="nav-link" id="profileLink"> Profile </a> </li>
-                <li> <a href="login.html" class="nav-link" id="loginLink"> Login </a> </li>
-                <li> <a href="signup.html" class="nav-link" id="signupLink"> Signup </a> </li>
-                <li> <a href="#" class="nav-link" id="logoutBtn"> Logout </a> </li>
+                    <li> <a href="index.html" class="nav-link"> Home </a> </li>
+                    <li> <a href="menu.html" class="nav-link"> Menu </a> </li>
+                    <li> <a href="about.html" class="nav-link"> About Us </a> </li>
+                    <li> <a href="profile.html" class="nav-link" id="profileLink"> Profile </a> </li>
+                    <li> <a href="login.html" class="nav-link" id="loginLink"> Login </a> </li>
+                    <li> <a href="signup.html" class="nav-link" id="signupLink"> Signup </a> </li>
+                    <li> <a href="#" class="nav-link" id="logoutBtn"> Logout </a> </li>
                 </ul>
                 <div class="hamburger" id="hamburger">
                     <span></span><span></span><span></span>
@@ -33,9 +34,21 @@
     </nav>
 
     <section class="hero">
+
         <div class="hero-bg"></div>
-        <h1 class="hero-title">Emerald <br> Dynasty</h1>
-        <p class="hero-subtitle">Luxury Vegetarian Fine Dining</p>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-layout">
+
+            <a href="menu.html" class="hero-arch menu-arch"> Explore Menu </a>
+            <div class="hero-center">
+                <h1 class="hero-title"> Emerald <br> Dynasty </h1>
+                <p class="hero-subtitle"> Luxury Vegetarian Fine Dining </p>
+            </div>
+            <a href="contact.html" class="hero-arch booking-arch"> Book Table </a>
+
+        </div>
 
     </section>
 
@@ -62,7 +75,7 @@
         <div class="footer-bottom">
             <p>&copy; 2026 Emerald Dynasty | Internship Project</p>
         </div>
-    
+
     </footer>
     <script src="js/auth.js"></script>
 </body>

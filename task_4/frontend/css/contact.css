@@ -46,22 +46,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 3rem;
-    /* Increased padding for a more polished look */
-
-    /* The Sugary Glaze Effect */
-    background: rgba(15, 14, 14, 0.137);
-    /* Very light white tint */
-    backdrop-filter: blur(15px) saturate(180%);
-    /* Blurs the background image */
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    /* Safari support */
-
-    border-radius: 20px;
-    /* Softer corners */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Subtle highlight edge */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    /* Depth shadow */
+    
 }
 
 .form-group {

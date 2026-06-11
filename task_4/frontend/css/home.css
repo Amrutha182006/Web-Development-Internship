@@ -1,0 +1,168 @@
+.hero {
+    min-height: 90vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 2rem 2rem;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('royal.png');
+    /* ADD YOUR IMAGE HERE */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.4);
+    /* DARKENS IMAGE */
+    z-index: -1;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    color: white;
+    text-shadow:
+        0 0 10px rgba(227, 204, 27, 0.692);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    margin-bottom: 4rem;
+    color: #e9eded;
+    opacity: 0.95;
+    letter-spacing: 0.5em;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-layout {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 80vh;
+
+    padding: 0 5%;
+
+    z-index: 2;
+}
+.hero-center {
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.hero-arch {
+
+    position: absolute;
+
+    width: 220px;
+
+    height: 110px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-decoration: none;
+
+    color: ivory;
+
+    backdrop-filter: blur(15px);
+
+    background: rgba(2, 39, 31, 0.689);
+
+    border: 1px solid rgba(212, 175, 55, 0.3);
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    transition: all 0.3s ease;
+}
+
+.menu-arch {
+
+    left: 0%;
+
+    top: 0%;
+
+    border-radius: 0 0 220px 220px;
+}
+
+.booking-arch {
+
+    right: 0%;
+
+    bottom: 0%;
+
+    border-radius: 220px 220px 0 0;
+}
+
+.hero-arch:hover {
+
+    transform: translateY(-8px);
+
+    border-color: rgba(212, 175, 55, 0.7);
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+@keyframes floatRotate {
+
+    0% {
+        transform:
+            translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px) rotate(3deg);
+    }
+
+    100% {
+        transform:
+            translateY(0px) rotate(0deg);
+    }
+}
+
+/*@keyframes float {
+
+    0% {
+        transform:
+        translateY(0);
+    }
+
+    50% {
+        transform:
+        translateY(-8px);
+    }
+
+    100% {
+        transform:
+        translateY(0);
+    }
+} */

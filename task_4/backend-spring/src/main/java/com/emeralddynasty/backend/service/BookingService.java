@@ -44,6 +44,8 @@ public class BookingService {
 
         booking.setEmail(email);
 
+        booking.setStatus("CONFIRMED");
+
         return bookingRepository.save(booking);
 
     }
@@ -61,9 +63,23 @@ public class BookingService {
                 .findByEmail(email);
     }
 
-    public void cancelBooking(@NonNull Long id) {
+    public void cancelBooking(
+        Long id) {
 
-        bookingRepository.deleteById(id);
-    }
+    Booking booking =
+            bookingRepository
+                    .findById(id)
+                    .orElseThrow(
+                            () -> new RuntimeException(
+                                    "Booking not found"
+                            )
+                    );
+
+    booking.setStatus(
+            "CANCELLED");
+
+    bookingRepository.save(
+            booking);
+}
 
 }

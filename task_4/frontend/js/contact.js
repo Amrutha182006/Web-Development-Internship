@@ -9,6 +9,15 @@ const detailsSection =
         "detailsSection"
     );
 
+const today =
+    new Date()
+        .toISOString()
+        .split("T")[0];
+
+document.getElementById(
+    "date"
+).min = today;
+
 if (!token) {
 
     alert(
@@ -38,9 +47,7 @@ form.addEventListener("submit", async (e) => {
 
         guests: document.getElementById("guests").value,
 
-        contactNumber: document.getElementById("phone").value,
-
-        email: document.getElementById("email").value
+        contactNumber: document.getElementById("phone").value
 
     };
 
@@ -84,6 +91,16 @@ form.addEventListener("submit", async (e) => {
         document.getElementById(
             "successSection"
         ).style.display = "block";
+
+        window.scrollTo({
+
+            top:
+                document.querySelector(
+                    ".contact-section"
+                ).offsetTop,
+
+            behavior: "smooth"
+        });
 
         // form.reset();
 
@@ -163,6 +180,16 @@ availabilityBtn.addEventListener("click", async () => {
                 "block";
 
             detailsSection.scrollIntoView({
+
+                behavior: "smooth"
+            });
+
+            window.scrollTo({
+
+                top:
+                    document.querySelector(
+                        ".contact-section"
+                    ).offsetTop,
 
                 behavior: "smooth"
             });
