@@ -1,6 +1,9 @@
 package com.emeralddynasty.backend.entity;
 
+import com.emeralddynasty.backend.enums.BookingStatus;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +29,8 @@ public class Booking {
 
     private String email;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private BookingStatus status;
 
     public Booking() {
     }
@@ -91,11 +95,11 @@ public class Booking {
         this.email = email;
     }
 
-    public String getStatus() {
+    public BookingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BookingStatus status) {
         this.status = status;
     }
 

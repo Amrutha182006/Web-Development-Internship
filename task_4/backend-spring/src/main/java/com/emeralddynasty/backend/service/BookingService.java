@@ -7,6 +7,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.emeralddynasty.backend.entity.Booking;
+import com.emeralddynasty.backend.enums.BookingStatus;
 import com.emeralddynasty.backend.repository.BookingRepository;
 import com.emeralddynasty.backend.security.JwtUtil;
 
@@ -44,8 +45,7 @@ public class BookingService {
 
         booking.setEmail(email);
 
-        booking.setStatus("CONFIRMED");
-
+        booking.setStatus(BookingStatus.CONFIRMED);
         return bookingRepository.save(booking);
 
     }
@@ -64,22 +64,17 @@ public class BookingService {
     }
 
     public void cancelBooking(
-        Long id) {
+            @NonNull Long id) {
 
-    Booking booking =
-            bookingRepository
-                    .findById(id)
-                    .orElseThrow(
-                            () -> new RuntimeException(
-                                    "Booking not found"
-                            )
-                    );
+        Booking booking = bookingRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new RuntimeException(
+                                "Booking not found"));
+        booking.setStatus(BookingStatus.CANCELLED);
 
-    booking.setStatus(
-            "CANCELLED");
-
-    bookingRepository.save(
-            booking);
-}
+        bookingRepository.save(
+                booking);
+    }
 
 }
