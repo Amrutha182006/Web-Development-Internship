@@ -61,46 +61,100 @@ form.addEventListener("submit", async (e) => {
             localStorage.getItem("token")
         );
 
-        const response = await fetch("http://localhost:8080/book-seat", {
+        const paymentResponse = await fetch(
+            "http://localhost:8080/payment/create-order",
+            {
+                method: "POST",
 
-            method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
+                body: JSON.stringify({
 
-            body: JSON.stringify(bookingData)
+                    seatingType:
+                        bookingData.seatingType,
 
-        });
+                    guests:
+                        bookingData.guests
 
-        if (!response.ok) {
+                })
+            }
+        );
 
-            throw new Error(
-                "Booking failed"
-            );
-        }
-        const data = await response.json();
+        const order =
+            await paymentResponse.json();
 
-        console.log("BOOKING SUCCESS");
+        const options = {
 
-        document.querySelector(
-            ".booking-form"
-        ).style.display = "none";
+            key:
+                "rzp_test_T0LoEOndZQQ01H",
 
-        document.getElementById(
-            "successSection"
-        ).style.display = "block";
+            amount:
+                order.amount,
 
-        window.scrollTo({
+            currency:
+                order.currency,
 
-            top:
+            order_id:
+                order.id,
+
+            name:
+                "Emerald Dynasty",
+
+            description:
+                "Table Reservation",
+
+            handler: async function () {
+
+                const response = await fetch("http://localhost:8080/book-seat", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+
+                    body: JSON.stringify(bookingData)
+
+                });
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Booking failed"
+                    );
+                }
+                const data = await response.json();
+
+                console.log("BOOKING SUCCESS");
+
                 document.querySelector(
-                    ".contact-section"
-                ).offsetTop,
+                    ".booking-form"
+                ).style.display = "none";
 
-            behavior: "smooth"
-        });
+                document.getElementById(
+                    "successSection"
+                ).style.display = "block";
+
+                window.scrollTo({
+
+                    top:
+                        document.querySelector(
+                            ".contact-section"
+                        ).offsetTop,
+
+                    behavior: "smooth"
+                });
+            }
+        };
+
+        const rzp =
+            new Razorpay(options);
+
+        rzp.open();
+
 
         // form.reset();
 

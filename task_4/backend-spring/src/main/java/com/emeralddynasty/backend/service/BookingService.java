@@ -1,5 +1,6 @@
 package com.emeralddynasty.backend.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,17 +52,50 @@ public class BookingService {
     }
 
     public List<Booking> getMyBookings(
-            HttpServletRequest request) {
+        HttpServletRequest request) {
 
-        String authHeader = request.getHeader("Authorization");
+    String authHeader =
+            request.getHeader(
+                    "Authorization");
 
-        String token = authHeader.substring(7);
+    String token =
+            authHeader.substring(7);
 
-        String email = jwtUtil.extractEmail(token);
+    String email =
+            jwtUtil.extractEmail(token);
 
-        return bookingRepository
-                .findByEmail(email);
+    List<Booking> bookings =
+            bookingRepository
+                    .findByEmailOrderByDateDesc(email);
+
+    LocalDate today =
+            LocalDate.now();
+
+    for (Booking booking : bookings) {
+
+        LocalDate bookingDate =
+                LocalDate.parse(
+                        booking.getDate()
+                );
+
+        if (booking.getStatus()
+                    == BookingStatus.CONFIRMED
+            &&
+            bookingDate.isBefore(
+                    today)) {
+
+            booking.setStatus(
+                    BookingStatus.COMPLETED
+            );
+
+            bookingRepository.save(
+                    booking
+            );
+        }       
     }
+
+    return bookings;
+}
 
     public void cancelBooking(
             @NonNull Long id) {

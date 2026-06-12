@@ -35,13 +35,15 @@ async function loadBookings() {
         const upcoming =
             bookings.filter(
                 booking =>
-                    booking.date >= today
+                    booking.date >= today &&
+                    booking.status === "CONFIRMED"
             );
 
         const history =
             bookings.filter(
                 booking =>
-                    booking.date < today
+                    booking.date < today ||
+                    booking.status === "CANCELLED"
             );
 
 
@@ -112,7 +114,7 @@ async function loadBookings() {
             </p>
 
             <p>
-                Completed Booking
+                ${booking.status}
             </p>
 
             <hr>

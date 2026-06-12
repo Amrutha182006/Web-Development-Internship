@@ -54,9 +54,7 @@
                             <option value="21:00">09:00 PM (Late Night)</option>
                         </select>
                     </div>
-
                     <br>
-
                     <div class="form-group">
                         <label>Type of Sitting</label>
                         <div class="sitting-options">
@@ -66,7 +64,7 @@
                                     <img src="images/ty.jpeg" alt="Indoor">
                                     <div class="sitting-details">
                                         <span class="sitting-name">Indoor Classic (4 chairs)</span>
-                                        <span class="sitting-price">$10.00/chair</span>
+                                        <span class="sitting-price">₹300/chair</span>
                                     </div>
                                 </div>
                             </label>
@@ -76,7 +74,7 @@
                                     <img src="images/type_2.png" alt="Outdoor">
                                     <div class="sitting-details">
                                         <span class="sitting-name">Outdoor Garden (10-12 chairs)</span>
-                                        <span class="sitting-price">$15.00/chair</span>
+                                        <span class="sitting-price">₹450/chair</span>
                                     </div>
                                 </div>
                             </label>
@@ -86,7 +84,7 @@
                                     <img src="images/tyoe_3.png" alt="VIP">
                                     <div class="sitting-details">
                                         <span class="sitting-name">VIP Lounge (10-15 chairs)</span>
-                                        <span class="sitting-price">$50.00/chair</span>
+                                        <span class="sitting-price">₹800/chair</span>
                                     </div>
                                 </div>
                             </label>
@@ -96,7 +94,7 @@
                                     <img src="images/type_4.png" alt="VIP">
                                     <div class="sitting-details">
                                         <span class="sitting-name">VIP outdoor Lounge (10-15 chairs)</span>
-                                        <span class="sitting-price">$100.00/chair</span>
+                                        <span class="sitting-price">₹1200/chair</span>
                                     </div>
                                 </div>
                             </label>
@@ -122,7 +120,7 @@
                         <label for="phone">Contact No.</label>
                         <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
                     </div>
-                    <button type="submit" class="submit-btn">CONFIRM BOOKING</button>
+                    <button type="submit" class="submit-btn">PROCEED TO PAYMENT</button>
                 </div>
             </form>
             <div id="successSection">
@@ -135,6 +133,7 @@
 
         </div>
     </section>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/contact.js"></script>
 </body>
