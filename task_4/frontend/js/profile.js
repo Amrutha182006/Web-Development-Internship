@@ -1,16 +1,9 @@
-window.addEventListener(
-    "DOMContentLoaded",
-    loadBookings
-);
-
+window.addEventListener("DOMContentLoaded", loadBookings);
 
 async function loadBookings() {
-
-    const token =
-        localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     try {
-
         const response = await fetch(
             "http://localhost:8080/my-bookings",
 
@@ -18,50 +11,48 @@ async function loadBookings() {
                 method: "GET",
 
                 headers: {
-                    "Authorization":
-                        `Bearer ${token}`
-                }
-            }
+                    Authorization: `Bearer ${token}`,
+                },
+            },
         );
 
-        const bookings =
-            await response.json();
+        const bookings = await response.json();
 
-        const today =
-            new Date()
-                .toISOString()
-                .split("T")[0];
+        console.log(bookings);
 
-        const upcoming =
-            bookings.filter(
-                booking =>
-                    booking.date >= today &&
-                    booking.status === "CONFIRMED"
-            );
+        const today = new Date().toISOString().split("T")[0];
 
-        const history =
-            bookings.filter(
-                booking =>
-                    booking.date < today ||
-                    booking.status === "CANCELLED"
-            );
+        const upcoming = bookings.filter(
+            (booking) => booking.date >= today && booking.status === "CONFIRMED",
+        );
 
+        const history = bookings.filter(
+            (booking) => booking.date < today || booking.status === "CANCELLED",
+        );
 
-        const upcomingContainer =
-            document.getElementById(
-                "upcomingBookings"
-            );
+        const upcomingContainer = document.getElementById("upcomingBookings");
 
-        const historyContainer =
-            document.getElementById(
-                "bookingHistory"
-            );
+        const historyContainer = document.getElementById("bookingHistory");
 
         upcomingContainer.innerHTML = "";
 
         historyContainer.innerHTML = "";
 
-        upcoming.forEach(booking => {
+        upcoming.forEach((booking) => {
+            if (upcoming.length === 0) {
+                upcomingContainer.innerHTML = `
+    
+            <div class="empty-state">
+    
+                <h3>No Upcoming Reservations</h3>
+    
+                <p>
+                    Book your next dining experience.
+                </p>
+    
+            </div>
+        `;
+            }
 
             upcomingContainer.innerHTML += `
 
@@ -82,6 +73,21 @@ async function loadBookings() {
                 ${booking.seatingType}
             </p>
 
+            <p>
+                Status:
+                ${booking.status}
+            </p>
+            
+            <p>
+                Payment:
+                ${booking.paymentStatus}
+            </p>
+            
+            <p>
+                Payment ID:
+                ${booking.paymentId}
+            </p>
+
             <button
                 onclick="cancelBooking(${booking.id})">
 
@@ -92,8 +98,7 @@ async function loadBookings() {
         </div> `;
         });
 
-        history.forEach(booking => {
-
+        history.forEach((booking) => {
             historyContainer.innerHTML += `
 
         <div class="booking-card">
@@ -114,59 +119,56 @@ async function loadBookings() {
             </p>
 
             <p>
-                ${booking.status}
+                Status:
+                <span class="status-badge ${booking.status.toLowerCase()}">
+                    ${booking.status}
+                </span>
             </p>
-
+            
+            <p>
+                Payment:
+                <span class="payment-badge ${booking.paymentStatus.toLowerCase()}">
+                    ${booking.paymentStatus}
+                </span>
+            </p>
+            
+            <p>
+                Payment ID:
+                ${booking.paymentId?.substring(4)}
+            </p>
             <hr>
 
         </div> `;
         });
-    }
-
-    catch (error) {
-
+    } catch (error) {
         console.log(error);
 
-        alert(
-            "Failed to load bookings"
-        );
+        alert("Failed to load bookings");
     }
 }
 
 async function cancelBooking(id) {
-
-    const token =
-        localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     try {
-
         await fetch(
-
             `http://localhost:8080/cancel/${id}`,
 
             {
                 method: "DELETE",
 
                 headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            }
+                    Authorization: `Bearer ${token}`,
+                },
+            },
         );
 
-        alert(
-            "Booking cancelled"
-        );
+        alert("Booking cancelled");
 
         loadBookings();
-
-    }
-
-    catch (error) {
-
+    } catch (error) {
         console.log(error);
 
-        alert(
-            "Failed to cancel booking"
-        );
+        alert("Failed to cancel booking");
     }
 }

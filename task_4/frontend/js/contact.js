@@ -56,7 +56,6 @@ form.addEventListener("submit", async (e) => {
 
         const token =
             localStorage.getItem("token");
-
         console.log(
             localStorage.getItem("token")
         );
@@ -105,7 +104,16 @@ form.addEventListener("submit", async (e) => {
             description:
                 "Table Reservation",
 
-            handler: async function () {
+            handler: async function (paymentResponse) {
+
+                bookingData.paymentId =
+                    paymentResponse.razorpay_payment_id;
+
+                bookingData.orderId =
+                    paymentResponse.razorpay_order_id;
+
+                bookingData.paymentStatus =
+                    "PAID";
 
                 const response = await fetch("http://localhost:8080/book-seat", {
 
