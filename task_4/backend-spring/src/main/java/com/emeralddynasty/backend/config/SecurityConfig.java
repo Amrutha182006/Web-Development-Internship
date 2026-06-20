@@ -53,7 +53,7 @@ public class SecurityConfig {
                                                 .requestMatchers(
                                                                 "/auth/**",
                                                                 "/book-seat",
-                                                                
+                                                                "/admin/**",
                                                                 "/bookings/**",
                                                                 "/my-bookings",
                                                                 "/cancel/**",

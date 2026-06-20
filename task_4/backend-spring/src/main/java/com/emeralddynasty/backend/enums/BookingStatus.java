@@ -6,7 +6,5 @@ public enum BookingStatus
 
     CANCELLED,
 
-    COMPLETED,
-
-    PENDING_PAYMENT
+    COMPLETED
 }
