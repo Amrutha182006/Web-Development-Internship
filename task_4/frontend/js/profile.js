@@ -3,6 +3,11 @@ window.addEventListener("DOMContentLoaded", loadBookings);
 async function loadBookings() {
     const token = localStorage.getItem("token");
 
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
     try {
         const response = await fetch(
             "http://localhost:8080/my-bookings",
@@ -15,6 +20,18 @@ async function loadBookings() {
                 },
             },
         );
+
+        if (response.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "login.html";
+            return;
+        }
+
+        console.log(response.status);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
 
         const bookings = await response.json();
 
@@ -53,8 +70,9 @@ async function loadBookings() {
             </div>
         `;
             }
+            else {
 
-            upcomingContainer.innerHTML += `
+                upcomingContainer.innerHTML += `
 
             <div class="booking-card">
 
@@ -96,6 +114,7 @@ async function loadBookings() {
             </button>
 
         </div> `;
+            }
         });
 
         history.forEach((booking) => {
@@ -120,15 +139,15 @@ async function loadBookings() {
 
             <p>
                 Status:
-                <span class="status-badge ${booking.status.toLowerCase()}">
-                    ${booking.status}
+                <span class="status-badge ${booking.status.toLowerCase() || "unknown"}">
+                    ${booking.status || "N/A"}
                 </span>
             </p>
             
             <p>
                 Payment:
-                <span class="payment-badge ${booking.paymentStatus.toLowerCase()}">
-                    ${booking.paymentStatus}
+                <span class="payment-badge ${booking.paymentStatus.toLowerCase() || "unknown"}">
+                    ${booking.paymentStatus || "N/A"}
                 </span>
             </p>
             
@@ -142,7 +161,6 @@ async function loadBookings() {
         });
     } catch (error) {
         console.log(error);
-
         alert("Failed to load bookings");
     }
 }

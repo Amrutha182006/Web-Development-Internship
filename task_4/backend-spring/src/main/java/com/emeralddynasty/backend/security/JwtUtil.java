@@ -8,6 +8,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
+
 @Component
 public class JwtUtil {
 
@@ -23,19 +26,34 @@ public class JwtUtil {
                                 .setExpiration(
                                                 new Date(
                                                                 System.currentTimeMillis()
-                                                                                + 86400000))
+                                                                                + 86400000 ))
                                 .signWith(SECRET_KEY)
                                 .compact();
         }
 
         public String extractEmail(String token) {
 
-                return Jwts
-                                .parserBuilder()
-                                .setSigningKey(SECRET_KEY)
-                                .build()
-                                .parseClaimsJws(token)
-                                .getBody()
-                                .getSubject();
+                try {
+
+                        return Jwts
+                                        .parserBuilder()
+                                        .setSigningKey(SECRET_KEY)
+                                        .build()
+                                        .parseClaimsJws(token)
+                                        .getBody()
+                                        .getSubject();
+
+                } catch (ExpiredJwtException e) {
+
+                        System.out.println("Token expired");
+
+                        return null;
+
+                } catch (JwtException e) {
+
+                        System.out.println("Invalid token");
+
+                        return null;
+                }
         }
 }

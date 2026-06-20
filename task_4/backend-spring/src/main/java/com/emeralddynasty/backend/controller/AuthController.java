@@ -1,5 +1,5 @@
 package com.emeralddynasty.backend.controller;
-
+import com.emeralddynasty.backend.entity.Role;
 import com.emeralddynasty.backend.dto.LoginRequest;
 import com.emeralddynasty.backend.security.JwtUtil;
 // import org.springframework.security.core.Authentication;
@@ -53,6 +53,8 @@ public class AuthController {
                 user.setPassword(
                                 passwordEncoder.encode(
                                                 request.getPassword()));
+
+                user.setRole(Role.USER);                                
 
                 userRepository.save(user);
 

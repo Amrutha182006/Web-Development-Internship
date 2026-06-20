@@ -1,5 +1,4 @@
 package com.emeralddynasty.backend.entity;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -16,7 +15,11 @@ public class User {
 
     private String password;
 
-    public User() {}
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public User() {
+    }
 
     public User(String email, String password) {
         this.email = email;
@@ -38,6 +41,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getPassword() {
         return password;
     }
@@ -48,5 +52,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

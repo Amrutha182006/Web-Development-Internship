@@ -17,98 +17,94 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class BookingService {
 
-    @Autowired
-    private BookingRepository bookingRepository;
+        @Autowired
+        private BookingRepository bookingRepository;
 
-    @Autowired
-    private JwtUtil jwtUtil;
+        @Autowired
+        private JwtUtil jwtUtil;
 
-    public boolean isAvailable(
-            Booking booking) {
+        public boolean isAvailable(
+                        Booking booking) {
 
-        List<Booking> bookings = bookingRepository
-                .findByDateAndTimeSlotAndSeatingType(
+                List<Booking> bookings = bookingRepository
+                                .findByDateAndTimeSlotAndSeatingType(
 
-                        booking.getDate(),
-                        booking.getTimeSlot(),
-                        booking.getSeatingType());
+                                                booking.getDate(),
+                                                booking.getTimeSlot(),
+                                                booking.getSeatingType());
 
-        return bookings.size() < 5;
-    }
+                return bookings.size() < 5;
+        }
 
-    public Booking saveBooking(Booking booking, HttpServletRequest request) {
+        public Booking saveBooking(Booking booking, HttpServletRequest request) {
 
-        String authHeader = request.getHeader("Authorization");
+                String authHeader = request.getHeader("Authorization");
 
-        String token = authHeader.substring(7);
+                String token = authHeader.substring(7);
 
-        String email = jwtUtil.extractEmail(token);
+                String email = jwtUtil.extractEmail(token);
 
-        booking.setEmail(email);
+                booking.setEmail(email);
 
-        booking.setStatus(BookingStatus.CONFIRMED);
-        return bookingRepository.save(booking);
+                booking.setStatus(BookingStatus.CONFIRMED);
 
-    }
+                System.out.println("Payment Status: " + booking.getPaymentStatus());
 
-    public List<Booking> getMyBookings(
-        HttpServletRequest request) {
+                return bookingRepository.save(booking);
 
-    String authHeader =
-            request.getHeader(
-                    "Authorization");
+        }
 
-    String token =
-            authHeader.substring(7);
+        public List<Booking> getMyBookings(
+                        HttpServletRequest request) {
 
-    String email =
-            jwtUtil.extractEmail(token);
+                String authHeader = request.getHeader(
+                                "Authorization");
 
-    List<Booking> bookings =
-            bookingRepository
-                    .findByEmailOrderByDateDesc(email);
+                String token = authHeader.substring(7);
 
-    LocalDate today =
-            LocalDate.now();
+                String email = jwtUtil.extractEmail(token);
 
-    for (Booking booking : bookings) {
+                if (email == null) {
+                        throw new RuntimeException("Invalid or expired token");
+                }
+                List<Booking> bookings = bookingRepository
+                                .findByEmailOrderByDateDesc(email);
 
-        LocalDate bookingDate =
-                LocalDate.parse(
-                        booking.getDate()
-                );
+                LocalDate today = LocalDate.now();
 
-        if (booking.getStatus()
-                    == BookingStatus.CONFIRMED
-            &&
-            bookingDate.isBefore(
-                    today)) {
+                for (Booking booking : bookings) {
 
-            booking.setStatus(
-                    BookingStatus.COMPLETED
-            );
+                        LocalDate bookingDate = LocalDate.parse(
+                                        booking.getDate());
 
-            bookingRepository.save(
-                    booking
-            );
-        }       
-    }
+                        if (booking.getStatus() == BookingStatus.CONFIRMED
+                                        &&
+                                        bookingDate.isBefore(
+                                                        today)) {
 
-    return bookings;
-}
+                                booking.setStatus(
+                                                BookingStatus.COMPLETED);
 
-    public void cancelBooking(
-            @NonNull Long id) {
+                                bookingRepository.save(
+                                                booking);
+                        }
+                }
 
-        Booking booking = bookingRepository
-                .findById(id)
-                .orElseThrow(
-                        () -> new RuntimeException(
-                                "Booking not found"));
-        booking.setStatus(BookingStatus.CANCELLED);
+                return bookings;
+        }
 
-        bookingRepository.save(
-                booking);
-    }
+        public void cancelBooking(
+                        @NonNull Long id) {
+
+                Booking booking = bookingRepository
+                                .findById(id)
+                                .orElseThrow(
+                                                () -> new RuntimeException(
+                                                                "Booking not found"));
+                booking.setStatus(BookingStatus.CANCELLED);
+
+                bookingRepository.save(
+                                booking);
+        }
 
 }

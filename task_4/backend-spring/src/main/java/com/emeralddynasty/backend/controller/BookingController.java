@@ -3,6 +3,8 @@ package com.emeralddynasty.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,22 +27,40 @@ public class BookingController {
     }
 
     @PostMapping("/book-seat")
-
-    public Booking bookSeat(
+    public ResponseEntity<?> bookSeat(
             @RequestBody Booking booking,
             HttpServletRequest request) {
 
-        return bookingService
-                .saveBooking(booking, request);
+        try {
+
+            Booking saved = bookingService.saveBooking(booking, request);
+
+            return ResponseEntity.ok(saved);
+
+        } catch (RuntimeException e) {
+
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body("Token expired");
+        }
     }
 
     @GetMapping("/my-bookings")
-
-    public List<Booking> getMyBookings(
+    public ResponseEntity<?> getMyBookings(
             HttpServletRequest request) {
 
-        return bookingService
-                .getMyBookings(request);
+        try {
+
+            List<Booking> bookings = bookingService.getMyBookings(request);
+
+            return ResponseEntity.ok(bookings);
+
+        } catch (RuntimeException e) {
+
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body("Token expired");
+        }
     }
 
     @DeleteMapping("/cancel/{id}")
